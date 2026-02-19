@@ -26,9 +26,13 @@ function formatDate(dateStr: string) {
   });
 }
 
+interface DailyRecordsData {
+  dailyRecords: Array<{ date: string; right: string[]; wrong: string[] }>;
+}
+
 export default function HistoryPage() {
   const { fromDate, toDate } = getLast90Days();
-  const { data, loading, error } = useQuery(GET_DAILY_RECORDS, {
+  const { data, loading, error } = useQuery<DailyRecordsData>(GET_DAILY_RECORDS, {
     variables: { fromDate, toDate },
   });
 

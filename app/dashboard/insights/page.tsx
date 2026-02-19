@@ -15,9 +15,13 @@ function getLast30Days() {
   };
 }
 
+interface DailyRecordsData {
+  dailyRecords: Array<{ right: string[]; wrong: string[] }>;
+}
+
 export default function InsightsPage() {
   const { fromDate, toDate } = getLast30Days();
-  const { data, loading, error } = useQuery(GET_DAILY_RECORDS, {
+  const { data, loading, error } = useQuery<DailyRecordsData>(GET_DAILY_RECORDS, {
     variables: { fromDate, toDate },
   });
 

@@ -2,7 +2,7 @@
 
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
-let client: ApolloClient<any> | null = null;
+let client: InstanceType<typeof ApolloClient> | null = null;
 
 function getGraphQLUri(): string {
   const envUri = process.env.NEXT_PUBLIC_GRAPHQL_URI;
