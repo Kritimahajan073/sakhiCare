@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { DateNavigator } from "@/components/features/DateNavigator";
@@ -10,7 +10,7 @@ function todayString(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
-export default function DailyRecordPage() {
+function DailyRecordPageInner() {
   const searchParams = useSearchParams();
   const dateParam = searchParams.get("date");
   const [date, setDate] = useState(todayString);
@@ -53,5 +53,13 @@ export default function DailyRecordPage() {
         <DailyRecordForm date={date} />
       </div>
     </PageContainer>
+  );
+}
+
+export default function DailyRecordPage() {
+  return (
+    <Suspense fallback={null}>
+      <DailyRecordPageInner />
+    </Suspense>
   );
 }

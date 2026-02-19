@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { Suspense, useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { useRoutineCheck } from "@/hooks/useRoutineCheck";
@@ -44,7 +44,7 @@ function getMissingTasks(tasks: RoutineTasks | null): RoutineTaskId[] {
   return ROUTINE_TASK_ORDER.filter((id) => !tasks[id]);
 }
 
-export default function RoutinePage() {
+function RoutinePageInner() {
   const searchParams = useSearchParams();
   const dateParam = searchParams.get("date");
   const [date, setDate] = useState(todayString);
@@ -280,5 +280,13 @@ export default function RoutinePage() {
         </div>
       </div>
     </PageContainer>
+  );
+}
+
+export default function RoutinePage() {
+  return (
+    <Suspense fallback={null}>
+      <RoutinePageInner />
+    </Suspense>
   );
 }
