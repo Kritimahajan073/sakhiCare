@@ -11,7 +11,8 @@ declare global {
 }
 
 function getClientPromise(): Promise<MongoClient> {
-  if (!process.env.MONGODB_URI) {
+  const uri = process.env.MONGODB_URI?.trim();
+  if (!uri) {
     throw new Error(
       "Please set MONGODB_URI in .env.local (or in Vercel Environment Variables)"
     );
@@ -20,8 +21,6 @@ function getClientPromise(): Promise<MongoClient> {
   if (clientPromise) {
     return clientPromise;
   }
-
-  const uri = process.env.MONGODB_URI;
 
   if (process.env.NODE_ENV === "development") {
     if (!global._mongoClientPromise) {
@@ -37,8 +36,15 @@ function getClientPromise(): Promise<MongoClient> {
   return clientPromise;
 }
 
-/** Get the database instance. Use this in Server Components and API routes. */
-export async function getDb(): Promise<Db> {
-  const client = await getClientPromise();
-  return client.db();
+/** Get the database instance, or null if MONGODB_URI is not set. */
+export async function getDb(): Promise<Db | null> {
+  if (!process.env.MONGODB_URI?.trim()) {
+    return null;
+  }
+  try {
+    const client = await getClientPromise();
+    return client.db();
+  } catch {
+    return null;
+  }
 }

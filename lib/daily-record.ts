@@ -7,6 +7,7 @@ let indexEnsured = false;
 async function ensureIndexes() {
   if (indexEnsured) return;
   const db = await getDb();
+  if (!db) return;
   const coll = db.collection<DailyRecord>(DAILY_RECORDS_COLLECTION);
   await coll.createIndex({ userId: 1, date: 1 }, { unique: true });
   indexEnsured = true;
@@ -20,8 +21,11 @@ export async function upsertDailyRecord(
   date: string,
   input: DailyRecordInput
 ): Promise<void> {
-  await ensureIndexes();
   const db = await getDb();
+  if (!db) {
+    throw new Error("MongoDB connection not configured. Please set MONGODB_URI in .env.local");
+  }
+  await ensureIndexes();
   const coll = db.collection<DailyRecord>(DAILY_RECORDS_COLLECTION);
   const now = new Date();
   await coll.updateOne(
@@ -49,8 +53,9 @@ export async function getDailyRecord(
   userId: string,
   date: string
 ): Promise<DailyRecord | null> {
-  await ensureIndexes();
   const db = await getDb();
+  if (!db) return null;
+  await ensureIndexes();
   const coll = db.collection<DailyRecord>(DAILY_RECORDS_COLLECTION);
   const doc = await coll.findOne({ userId, date });
   return doc as DailyRecord | null;
@@ -64,8 +69,9 @@ export async function getDailyRecords(
   fromDate?: string,
   toDate?: string
 ): Promise<DailyRecord[]> {
-  await ensureIndexes();
   const db = await getDb();
+  if (!db) return [];
+  await ensureIndexes();
   const coll = db.collection<DailyRecord>(DAILY_RECORDS_COLLECTION);
   const filter: Record<string, unknown> = { userId };
   if (fromDate != null || toDate != null) {
