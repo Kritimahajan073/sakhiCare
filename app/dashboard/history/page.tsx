@@ -40,12 +40,12 @@ export default function HistoryPage() {
   return (
     <PageContainer>
       <h1
-        className="text-2xl font-bold text-[var(--foreground)]"
+        className="text-2xl font-bold text-foreground"
         style={{ animation: "fade-in 0.4s var(--ease-out)" }}
       >
         History
       </h1>
-      <p className="mt-1 text-[var(--muted)]">
+      <p className="mt-1 text-muted">
         Past daily records — tap to view or edit
       </p>
 
@@ -67,13 +67,13 @@ export default function HistoryPage() {
         <ul className="mt-8 space-y-2">
           {records.length === 0 ? (
             <li
-              className="p-8 rounded-[var(--radius-lg)] border border-dashed border-[var(--card-border)] text-center text-[var(--muted)]"
+              className="p-8 rounded-lg border border-dashed border-card-border text-center text-muted"
               style={{ animation: "fade-in 0.4s var(--ease-out)" }}
             >
               <p>No records in the last 90 days.</p>
               <Link
                 href="/dashboard/daily-record"
-                className="mt-3 inline-block text-sm font-medium text-[var(--primary)] hover:underline"
+                className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
               >
                 Log today’s record
               </Link>
@@ -90,12 +90,12 @@ export default function HistoryPage() {
               >
                 <Link
                   href={`/dashboard/daily-record?date=${r.date}`}
-                  className="block p-4 rounded-[var(--radius)] border border-[var(--card-border)] bg-[var(--card)] hover:border-[var(--primary)]/30 hover:shadow-[var(--shadow)] transition-all duration-200"
+                  className="block p-4 rounded-lg border border-card-border bg-card hover:border-primary/30 hover:shadow transition-all duration-200"
                 >
-                  <p className="font-medium text-[var(--foreground)]">
+                  <p className="font-medium text-foreground">
                     {formatDate(r.date)}
                   </p>
-                  <p className="mt-1 text-sm text-[var(--muted)]">
+                  <p className="mt-1 text-sm text-muted">
                     {r.right.length} right · {r.wrong.length} wrong
                   </p>
                 </Link>

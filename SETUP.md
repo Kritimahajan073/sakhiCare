@@ -2,12 +2,12 @@
 
 ## Environment Variables
 
-### 1. Create `.env.local` file
+### 1. Create `.env` file
 
-Copy `.env.example` to `.env.local`:
+Copy `.env.example` to `.env`:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
 ### 2. Set MongoDB URI
@@ -20,7 +20,7 @@ cp .env.example .env.local
 4. Copy the connection string
 5. Replace `<password>` with your database user password
 6. Replace `<dbname>` with `sakhicare` (or your preferred database name)
-7. Paste it in `.env.local`:
+7. Paste it in `.env`:
 
 ```env
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/sakhicare?retryWrites=true&w=majority
@@ -58,9 +58,9 @@ When deploying to Vercel:
 
 ### Error: "Please set MONGODB_URI"
 
-- Make sure `.env.local` exists in the project root
+- Make sure `.env` exists in the project root
 - Check that `MONGODB_URI` is set (no typos)
-- Restart the dev server after changing `.env.local`
+- Restart the dev server after changing `.env`
 - For Vercel: Ensure the environment variable is set in project settings
 
 ### MongoDB Connection Issues

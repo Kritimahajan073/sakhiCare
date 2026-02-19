@@ -21,6 +21,10 @@ export function useSaveDailyRecord() {
       const result = await mutate({
         variables: { date, input },
       });
+      const errMsg = result.errors?.[0]?.message;
+      if (errMsg) {
+        return { success: false, error: errMsg };
+      }
       return { success: true, data: result.data?.saveDailyRecord };
     } catch (err) {
       return {

@@ -29,12 +29,12 @@ export default function InsightsPage() {
   return (
     <PageContainer>
       <h1
-        className="text-2xl font-bold text-[var(--foreground)]"
+        className="text-2xl font-bold text-foreground"
         style={{ animation: "fade-in 0.4s var(--ease-out)" }}
       >
         Insights
       </h1>
-      <p className="mt-1 text-[var(--muted)]">
+      <p className="mt-1 text-muted">
         Last 30 days — patterns from your daily records
       </p>
 
@@ -56,37 +56,37 @@ export default function InsightsPage() {
         <div className="mt-8 space-y-6">
           <div className="grid gap-4 sm:grid-cols-3">
             <div
-              className="p-5 rounded-[var(--radius-lg)] border border-[var(--card-border)] bg-[var(--card)]"
+              className="p-5 rounded-lg border border-card-border bg-card"
               style={{
                 animation: "scale-in 0.4s var(--ease-out) 0.1s forwards",
                 opacity: 0,
               }}
             >
-              <p className="text-sm text-[var(--muted)]">Days logged</p>
-              <p className="mt-1 text-2xl font-bold text-[var(--foreground)]">
+              <p className="text-sm text-muted">Days logged</p>
+              <p className="mt-1 text-2xl font-bold text-foreground">
                 {daysLogged}
               </p>
             </div>
             <div
-              className="p-5 rounded-[var(--radius-lg)] border border-[var(--card-border)] bg-[var(--card)]"
+              className="p-5 rounded-lg border border-card-border bg-card"
               style={{
                 animation: "scale-in 0.4s var(--ease-out) 0.15s forwards",
                 opacity: 0,
               }}
             >
-              <p className="text-sm text-[var(--muted)]">Things done right</p>
+              <p className="text-sm text-muted">Things done right</p>
               <p className="mt-1 text-2xl font-bold text-green-600 dark:text-green-400">
                 {totalRight}
               </p>
             </div>
             <div
-              className="p-5 rounded-[var(--radius-lg)] border border-[var(--card-border)] bg-[var(--card)]"
+              className="p-5 rounded-lg border border-card-border bg-card"
               style={{
                 animation: "scale-in 0.4s var(--ease-out) 0.2s forwards",
                 opacity: 0,
               }}
             >
-              <p className="text-sm text-[var(--muted)]">Things to improve</p>
+              <p className="text-sm text-muted">Things to improve</p>
               <p className="mt-1 text-2xl font-bold text-amber-600 dark:text-amber-400">
                 {totalWrong}
               </p>
@@ -95,7 +95,7 @@ export default function InsightsPage() {
 
           {daysLogged === 0 && (
             <div
-              className="p-8 rounded-[var(--radius-lg)] border border-dashed border-[var(--card-border)] text-center text-[var(--muted)]"
+              className="p-8 rounded-lg border border-dashed border-card-border text-center text-muted"
               style={{ animation: "fade-in 0.4s var(--ease-out)" }}
             >
               <p className="text-lg">No records in the last 30 days.</p>

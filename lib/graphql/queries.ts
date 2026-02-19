@@ -38,3 +38,47 @@ export const SAVE_DAILY_RECORD = gql`
     }
   }
 `;
+
+export const GET_ROUTINE_CHECK = gql`
+  query GetRoutineCheck($date: String!) {
+    routineCheck(date: $date) {
+      id
+      date
+      tasks {
+        wakeUpOnTime
+        meditation
+        deepBreathing
+        morningWalkSunlight
+        breakfastWithProtein
+        lunchSimpleNotOutside
+        dinnerLight
+        dailyWalk
+      }
+      weightKg
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const SAVE_ROUTINE_CHECK = gql`
+  mutation SaveRoutineCheck($date: String!, $tasks: RoutineTasksInput!, $weightKg: Float) {
+    saveRoutineCheck(date: $date, tasks: $tasks, weightKg: $weightKg) {
+      id
+      date
+      tasks {
+        wakeUpOnTime
+        meditation
+        deepBreathing
+        morningWalkSunlight
+        breakfastWithProtein
+        lunchSimpleNotOutside
+        dinnerLight
+        dailyWalk
+      }
+      weightKg
+      createdAt
+      updatedAt
+    }
+  }
+`;

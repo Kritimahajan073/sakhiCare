@@ -18,3 +18,28 @@ export interface DailyRecordInput {
   right: string[];
   wrong: string[];
 }
+
+/** Fixed routine tasks for PCOD/PCOS (yes/no per day). */
+export interface RoutineTasks {
+  wakeUpOnTime: boolean;
+  meditation: boolean;
+  deepBreathing: boolean;
+  morningWalkSunlight: boolean;
+  breakfastWithProtein: boolean;
+  lunchSimpleNotOutside: boolean;
+  dinnerLight: boolean;
+  dailyWalk: boolean;
+}
+
+/** One routine check per user per date. */
+export interface RoutineCheck {
+  _id?: string;
+  userId: string;
+  date: string;
+  tasks: RoutineTasks;
+  weightKg?: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type RoutineTaskId = keyof RoutineTasks;
