@@ -52,8 +52,16 @@ Women wellness tracking app — PCOD journey, routine, and health in one place.
 
 ## Deploy
 
-- **Client (Vercel):** Set `NEXT_PUBLIC_GRAPHQL_URI` to your deployed API URL (e.g. `https://api.yourdomain.com/graphql`).
-- **Server:** Deploy the `server/` app to a Node host (Railway, Render, Fly.io, etc.). Set `MONGODB_URI`, `PORT`, and `CLIENT_ORIGIN` (your frontend URL for CORS).
+See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for a complete deployment guide.
+
+**Quick summary:**
+- **Frontend:** Deploy to [Vercel](https://vercel.com) (recommended for Next.js)
+- **Backend:** Deploy to [Railway](https://railway.app) or [Render](https://render.com)
+- **Database:** MongoDB Atlas (already configured)
+
+Set environment variables:
+- **Backend:** `MONGODB_URI`, `CLIENT_ORIGIN` (your frontend URL)
+- **Frontend:** `NEXT_PUBLIC_GRAPHQL_URI` (your backend API URL)
 
 ## Build
 
